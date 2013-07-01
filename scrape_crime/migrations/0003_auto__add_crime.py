@@ -28,23 +28,9 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('scrape_crime', ['Crime'])
 
-        # Adding model 'Location'
-        db.create_table('scrape_crime_location', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('latitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=20, decimal_places=14, blank=True)),
-            ('longitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=20, decimal_places=14, blank=True)),
-            ('needs_recoding', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('community_area', self.gf('django.db.models.fields.IntegerField')(default=False)),
-            ('block', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-        ))
-        db.send_create_signal('scrape_crime', ['Location'])
-
     def backwards(self, orm):
         # Deleting model 'Crime'
         db.delete_table('scrape_crime_crime')
-
-        # Deleting model 'Location'
-        db.delete_table('scrape_crime_location')
 
     models = {
         'scrape_crime.crime': {

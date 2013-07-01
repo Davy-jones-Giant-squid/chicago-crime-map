@@ -23,7 +23,42 @@ class Command(BaseCommand):
 		log.debug('Retrieving data from cityofchicago.org')
 
 		for datum in data:
+			non_unicode_keys = dict((str(k), v) for k, v in datum.iteritems())
+			if 'location' in non_unicode_keys:
+				location_non_unicode = dict((str(k), v) for k, v in non_unicode_keys['location'].iteritems())
+				for i in location_non_unicode:
+					if i == 'latitude' or i == 'longitude':
+						location_non_unicode[i] = str(location_non_unicode[i])
+				loc_obj = Location(block=str(non_unicode_keys['block']), 
+					community_area=int(non_unicode_keys['community_area']),**location_non_unicode)
+				loc_obj.save()
+				
+				attribute_dict = dict((k,v) for k, v in non_unicode_keys.iteritems() if k in terms)
+				for i in attribute_dict:
+					if i != 'domestic' or i != 'arrest':
+						attribute_dict[i] = str(attribute_dict[i])
+				crime_obj = Crime.objects.create(location=loc_obj, **attribute_dict)
+				crime_obj.save()
+				print crime_obj.location
+
+			else:
+				loc_obj = Location(block=str(non_unicode_keys['block']), 
+					community_area=int(non_unicode_keys['community_area']))
+				attribute_dict = dict((k,v) for k, v in non_unicode_keys.iteritems() if k in terms)
+				for i in attribute_dict:
+					if i != 'domestic' or i != 'arrest':
+						attribute_dict[i] = str(attribute_dict[i])
+				crime_obj = Crime.objects.create(location=loc_obj, **attribute_dict)
+				crime_obj.save()
+				print crime_obj.location
+
+
+
+
+		
 			
+			"""
+			for datum in data:
 			non_unicode_keys = dict((str(k), v) for k, v in datum.iteritems())
 			if 'location' in non_unicode_keys:
 				location_non_unicode = dict((str(k), v) for k, v in non_unicode_keys['location'].iteritems())
@@ -44,24 +79,6 @@ class Command(BaseCommand):
 			else:
 				print "No location"
 			
-			
-			"""
-			icode_keys['community_area'], **location_non_unicode)
-			
-			attribute_dict = dict((k,v) for k, v in non_unicode_keys.iteritems() if k in terms)
-
-			obj = Crime(**attribute_dict)
-			obj.save()
-			When use json.loads(url), json returns a dictionary with 'u' before key and value.
-			However, the dic won't load in model(**kwargs) with the 'u'. Find a way to get rid of
-			the 'u' before creating objects.
-
-			Create a function that will turn each value in the dictionary to the right data type
-			like:
-			dic = {'number': '10'}
-			dic['number'] = int(dic['number'])
-			>>>dic
-			>>>{'number': 10}
 			"""
 
 
