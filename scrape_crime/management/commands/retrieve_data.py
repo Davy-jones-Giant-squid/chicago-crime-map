@@ -39,47 +39,28 @@ class Command(BaseCommand):
 						attribute_dict[i] = str(attribute_dict[i])
 				crime_obj = Crime.objects.create(location=loc_obj, **attribute_dict)
 				crime_obj.save()
-				print crime_obj.location
 
 			else:
-				loc_obj = Location(block=str(non_unicode_keys['block']), 
-					community_area=int(non_unicode_keys['community_area']))
-				attribute_dict = dict((k,v) for k, v in non_unicode_keys.iteritems() if k in terms)
-				for i in attribute_dict:
-					if i != 'domestic' or i != 'arrest':
-						attribute_dict[i] = str(attribute_dict[i])
-				crime_obj = Crime.objects.create(location=loc_obj, **attribute_dict)
-				crime_obj.save()
-				print crime_obj.location
-
-
-
-
-		
-			
-			"""
-			for datum in data:
-			non_unicode_keys = dict((str(k), v) for k, v in datum.iteritems())
-			if 'location' in non_unicode_keys:
-				location_non_unicode = dict((str(k), v) for k, v in non_unicode_keys['location'].iteritems())
-				for i in location_non_unicode:
-					if i == 'latitude' or i == 'longitude':
-						location_non_unicode[i] = str(location_non_unicode[i])
-				loc_obj = Location(block=str(non_unicode_keys['block']), 
-					community_area=int(non_unicode_keys['community_area']),**location_non_unicode)
-				loc_obj.save()
-				
-				attribute_dict = dict((k,v) for k, v in non_unicode_keys.iteritems() if k in terms)
-				for i in attribute_dict:
-					if i != 'domestic' or i != 'arrest':
-						attribute_dict[i] = str(attribute_dict[i])
-
-				crime_obj = Crime.objects.create(location=loc_obj, **attribute_dict)
-				print crime_obj.description, crime_obj.primary_type, type(crime_obj.primary_type)
-			else:
-				print "No location"
-			
-			"""
-
-
+				if 'latitude' in non_unicode_keys and 'longitude' in non_unicode_keys:
+					loc_obj = Location(block=str(non_unicode_keys['block']), 
+						community_area=int(non_unicode_keys['community_area']),
+						latitude=str(non_unicode_keys['latitude']),
+						longitude=str(non_unicode_keys['longitude']))
+					attribute_dict = dict((k,v) for k, v in non_unicode_keys.iteritems() if k in terms)
+					for i in attribute_dict:
+						if i != 'domestic' or i != 'arrest':
+							attribute_dict[i] = str(attribute_dict[i])
+					crime_obj = Crime.objects.create(location=loc_obj, **attribute_dict)
+					crime_obj.save()
+				else:
+					loc_obj = Location(block=str(non_unicode_keys['block']), 
+						community_area=int(non_unicode_keys['community_area']),
+						latitude=None,
+						longitude=None)
+					attribute_dict = dict((k,v) for k, v in non_unicode_keys.iteritems() if k in terms)
+					for i in attribute_dict:
+						if i != 'domestic' or i != 'arrest':
+							attribute_dict[i] = str(attribute_dict[i])
+					crime_obj = Crime.objects.create(location=loc_obj, **attribute_dict)
+					crime_obj.save()
 
