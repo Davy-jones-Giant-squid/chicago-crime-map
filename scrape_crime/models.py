@@ -26,8 +26,8 @@ class Crime(models.Model):
 
 	
 class Location(models.Model):
-	latitude = models.DecimalField(max_digits=20, decimal_places=14,null=True, blank=True)
-	longitude = models.DecimalField(max_digits=20, decimal_places=14,null=True, blank=True)
+	latitude = models.FloatField(null=True, blank=True)
+	longitude = models.FloatField(null=True, blank=True)
 	needs_recoding = models.BooleanField(default=False)
 	community_area = models.IntegerField(default=False)
 	block = models.CharField(max_length=255, null=True, blank='')

@@ -28,7 +28,7 @@ class Command(BaseCommand):
 				location_non_unicode = dict((str(k), v) for k, v in non_unicode_keys['location'].iteritems())
 				for i in location_non_unicode:
 					if i == 'latitude' or i == 'longitude':
-						location_non_unicode[i] = str(location_non_unicode[i])
+						location_non_unicode[i] = float(location_non_unicode[i])
 				loc_obj = Location(block=str(non_unicode_keys['block']), 
 					community_area=int(non_unicode_keys['community_area']),**location_non_unicode)
 				loc_obj.save()
@@ -44,8 +44,8 @@ class Command(BaseCommand):
 				if 'latitude' in non_unicode_keys and 'longitude' in non_unicode_keys:
 					loc_obj = Location(block=str(non_unicode_keys['block']), 
 						community_area=int(non_unicode_keys['community_area']),
-						latitude=str(non_unicode_keys['latitude']),
-						longitude=str(non_unicode_keys['longitude']))
+						latitude=float(non_unicode_keys['latitude']),
+						longitude=float(non_unicode_keys['longitude']))
 					attribute_dict = dict((k,v) for k, v in non_unicode_keys.iteritems() if k in terms)
 					for i in attribute_dict:
 						if i != 'domestic' or i != 'arrest':
