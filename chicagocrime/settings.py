@@ -1,7 +1,8 @@
 # Django settings for chicagocrime project.
-
+import os, os.path
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+SETTINGS_PATH = os.path.dirname(os.path.realpath(__file__))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -106,9 +107,11 @@ ROOT_URLCONF = 'chicagocrime.urls'
 WSGI_APPLICATION = 'chicagocrime.wsgi.application'
 
 TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+
 )
 
 INSTALLED_APPS = (
