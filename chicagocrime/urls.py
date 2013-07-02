@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'chicagocrime.views.home', name='home'),
+    url(r'^$', 'scrape_crime.views.map'),
     # url(r'^chicagocrime/', include('chicagocrime.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
