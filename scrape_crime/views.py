@@ -10,13 +10,19 @@ class MapForm(forms.Form):
 
 
 def map(request):
+	myLatlng = maps.LatLng(41.87,-87.62)
 	gmap = maps.Map(opts = {
-		'center': maps.LatLng(41.87,-87.62),
+		'center': myLatlng,
 		'mapTypeId': maps.MapTypeId.ROADMAP,
 		'zoom': 11,
 		'mapTpeControlOptions':{
 			'style': maps.MapTypeControlStyle.DROPDOWN_MENU
 		},
+		})
+
+	marker = maps.Marker({
+		'position': myLatlng,
+		'map' : gmap,
 		})
 	context = {'form': MapForm(initial={'map':gmap})}
 	return render_to_response('map.html', context)
