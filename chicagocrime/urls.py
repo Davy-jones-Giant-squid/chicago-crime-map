@@ -8,6 +8,8 @@ urlpatterns = patterns('',
     # Examples:
     (r'', include('gmapi.urls.media')),
     (r'^$', 'scrape_crime.views.map'),
+    (r'^2$', 'scrape_crime.views.map2'),
+    (r'^heatmap/', 'scrape_crime.views.heatmap'),
     # url(r'^chicagocrime/', include('chicagocrime.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

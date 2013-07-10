@@ -1,3 +1,5 @@
+import math
+
 from django.db import models
 
 class Crime(models.Model):
@@ -19,10 +21,26 @@ class Crime(models.Model):
 
 
 	def __unicode__(self):
-		return self.id
+		return u'Crime case number %s' % self.case_number
 
 	class Meta:
 		ordering = ['description']
+
+	def in_range(self, latitude, longitude, distance):
+		"""
+		Given latitude and longitude numbers, as well as a distance,
+		return True, if the latitude and longitude are within 'distance'
+		units of latitude and longitude of the point given.  Otherwise, 
+		return False
+		"""
+		if not latitude or not longitude or not self.location:
+			return False
+
+		if math.sqrt((latitude - self.location.latitude)**2 +
+			(longitude - self.location.longitude)**2) < distance:
+			return True
+		else:
+			return False
 
 	
 class Location(models.Model):
@@ -33,4 +51,4 @@ class Location(models.Model):
 	block = models.CharField(max_length=255, null=True, blank='')
 
 	def __unicode__(self):
-		return self.block
+		return u'Location: %s, %s' % (self.latitude, self.longitude)

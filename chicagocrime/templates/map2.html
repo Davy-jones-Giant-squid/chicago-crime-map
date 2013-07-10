@@ -1,0 +1,36 @@
+<!-- for tutorial : https://developers.google.com/maps/documentation/javascript/tutorial#api_key-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps API Sample</title>
+    <script src="//maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw" type="text/javascript"></script>
+    <script type="text/javascript">
+
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng({{ latitude }}, {{ longitude }}), 13);
+    
+        // Add 10 markers to the map at random locations
+        var bounds = map.getBounds();
+        var southWest = bounds.getSouthWest();
+        var northEast = bounds.getNorthEast();
+        var lngSpan = northEast.lng() - southWest.lng();
+        var latSpan = northEast.lat() - southWest.lat();
+        for (var i = 0; i < {{ len(crimes); i++) {
+          var point = new GLatLng(southWest.lat() + latSpan * Math.random(),
+                                  southWest.lng() + lngSpan * Math.random());
+          map.addOverlay(new GMarker(point));
+        }
+      }
+    }
+    
+
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()" style="font-family: Arial;border: 0 none;">
+    <div id="map_canvas" style="width: 500px; height: 300px"></div>
+  </body>
+</html>
