@@ -1,9 +1,10 @@
-from django import forms
-from django.shortcuts import render_to_response
+import datetime
 from gmapi import maps
 from gmapi.forms.widgets import GoogleMap
-from django.http import HttpResponse
 
+from django import forms
+from django.shortcuts import render_to_response
+from django.http import HttpResponse
 
 from scrape_crime.models import Crime, Location
 
@@ -11,10 +12,19 @@ class MapForm(forms.Form):
 	map = forms.Field(widget=GoogleMap(attrs={'width':510, 'height': 500}))
 
 def heatmap(request):
-	obj = Crime.objects.exclude(location__latitude=None)
-	list_obj = []
-	for i in obj:
-		list_obj.append([i.location.latitude, i.location.longitude])
+	objs = Crime.objects.exclude(location__latitude=None).values('location__latitude', 'location__longitude') 
+
+	#.values(**kwargs) will retrieve object's field value and put them in a list of dictionary, ex:
+	#[{'location__longitude': -87.704368230683002, 'location__latitude': 41.821902362679687}, 
+	#{'location__longitude': -87.807156332975083, 'location__latitude': 41.945413796757549}, 
+	#{'location__longitude': -87.647133449272189, 'location__latitude': 41.935362071404619}, 
+	#{'location__longitude': -87.723676565062746, 'location__latitude': 41.814207227378269}]
+
+	start = datetime.datetime.now() 
+	list_obj = [[i['location__latitude'], i['location__longitude']] for i in objs]
+	#looping through a list is faster than hitting the database at every loop
+	end = datetime.datetime.now()
+	print end - start
 	cxt = {'obj': list_obj}
 	return render_to_response('heatmap.html', cxt)
 	
