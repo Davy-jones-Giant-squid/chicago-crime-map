@@ -20,11 +20,8 @@ def heatmap(request):
 	#{'location__longitude': -87.647133449272189, 'location__latitude': 41.935362071404619}, 
 	#{'location__longitude': -87.723676565062746, 'location__latitude': 41.814207227378269}]
 
-	start = datetime.datetime.now() 
 	list_obj = [[i['location__latitude'], i['location__longitude']] for i in objs]
 	#looping through a list is faster than hitting the database at every loop
-	end = datetime.datetime.now()
-	print end - start
 	cxt = {'obj': list_obj}
 	return render_to_response('heatmap.html', cxt)
 	
