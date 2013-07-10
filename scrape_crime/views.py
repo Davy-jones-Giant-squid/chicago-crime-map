@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from gmapi import maps
 from gmapi.forms.widgets import GoogleMap
 from django.http import HttpResponse
-import simplejson
+
 
 from scrape_crime.models import Crime, Location
 
@@ -11,21 +11,13 @@ class MapForm(forms.Form):
 	map = forms.Field(widget=GoogleMap(attrs={'width':510, 'height': 500}))
 
 def heatmap(request):
-	"""
-	obj = Crime.objects.all()
-	obj_list = []
+	obj = Crime.objects.exclude(location__latitude=None)
+	list_obj = []
 	for i in obj:
-		try:
-			obj_list.append((i.location.latitude, i.location.longitude))
-		except AttributeError:
-			pass
-	json_list = simplejson.dumps(obj_list)
-	cxt = {'obj': json_list}
+		list_obj.append([i.location.latitude, i.location.longitude])
+	cxt = {'obj': list_obj}
 	return render_to_response('heatmap.html', cxt)
-	"""
-	obj = 'hello!'
-	cxt = {'obj': obj}
-	return render_to_response('heatmap.html', cxt)
+	
 
 def map(request, latitude=41.87, longitude=-87.62):
 	distance = 0.03
