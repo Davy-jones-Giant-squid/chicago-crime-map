@@ -21,7 +21,7 @@ class Crime(models.Model):
 
 
 	def __unicode__(self):
-		return u'Crime case number %s' % self.case_number
+		return u'Crime case number %s: %s' % (self.case_number, self.primary_type)
 
 	class Meta:
 		ordering = ['description']

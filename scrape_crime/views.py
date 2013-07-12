@@ -1,10 +1,12 @@
 import datetime
 from gmapi import maps
 from gmapi.forms.widgets import GoogleMap
+import json
 
 from django import forms
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from django.utils import simplejson
 
 from scrape_crime.models import Crime, Location
 
@@ -24,7 +26,13 @@ def heatmap(request):
 	#looping through a list is faster than hitting the database at every loop
 	cxt = {'obj': list_obj}
 	return render_to_response('heatmap.html', cxt)
-	
+
+def markermap(request):
+	objs = Crime.objects.exclude(location__latitude=None).values('location__latitude', 'location__longitude', 'primary_type') 
+	list_obj = [[i['location__latitude'], i['location__longitude'], str(i['primary_type'])] for i in objs]
+	context = {'objects': simplejson.dumps(list_obj)}
+	return render_to_response('markermap.html', context)
+
 
 def map(request, latitude=41.87, longitude=-87.62):
 	distance = 0.03
