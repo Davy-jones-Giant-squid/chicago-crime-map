@@ -11,14 +11,14 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'chicagocrimerate',                      # Or path to database file if using sqlite3.
-        'USER': 'chicagocrimerate',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'd4klu3vkgfr09o',
+    'HOST': 'ec2-54-221-203-200.compute-1.amazonaws.com',
+    'PORT': 5432,
+    'USER': 'kzaolqsloexizh',
+    'PASSWORD': 'pmOc3G4PJ2GgbNR8kb_LN2-PvO'
+  }
 }
 
 # Local time zone for this installation. Choices can be found here:
@@ -157,3 +157,27 @@ LOGGING = {
         },
     }
 }
+
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

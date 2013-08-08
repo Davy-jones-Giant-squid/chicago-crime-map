@@ -1,6 +1,4 @@
 import datetime
-from gmapi import maps
-from gmapi.forms.widgets import GoogleMap
 import json
 
 from django import forms
@@ -10,8 +8,6 @@ from django.utils import simplejson
 
 from scrape_crime.models import Crime, Location
 
-class MapForm(forms.Form):
-	map = forms.Field(widget=GoogleMap(attrs={'width':510, 'height': 500}))
 
 def heatmap(request):
 	objs = Crime.objects.exclude(location__latitude=None).values('location__latitude', 'location__longitude') 

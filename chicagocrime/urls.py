@@ -5,7 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    (r'', include('gmapi.urls.media')),
+
     (r'^$', 'scrape_crime.views.map'),
     (r'^2$', 'scrape_crime.views.map2'),
     (r'^heatmap/', 'scrape_crime.views.heatmap'),
