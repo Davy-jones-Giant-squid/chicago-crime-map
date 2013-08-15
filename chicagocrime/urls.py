@@ -1,15 +1,15 @@
 from django.conf.urls.defaults import *
+from django.conf.urls import patterns
+
 
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-
-
-    (r'^$', 'scrape_crime.views.map'),
-    (r'^2$', 'scrape_crime.views.map2'),
-    (r'^heatmap/', 'scrape_crime.views.heatmap'),
-    (r'^markermap/', 'scrape_crime.views.markermap'),
+	#the 'name' option is used for the href block in html
+    url(r'^$', 'scrape_crime.views.home', name='homepage'),
+    url(r'^heatmap/', 'scrape_crime.views.heatmap', name='heatmap'),
+    url(r'^markermap/', 'scrape_crime.views.markermap', name='markermap'),
     # url(r'^chicagocrime/', include('chicagocrime.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

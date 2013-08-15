@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> Chicago Crime Map </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/static/style.css" media="screen">
+<link href="/static/fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/uuid.js"></script>
+</head>
+
+<body>
+<div id="header-wrapper">
+	<div id="header-wrapper2">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#" class="icon icon-group"><span>Chicago Crime Map</span></a></h1>
+				<p >Check what's happening in your neighborhood</p>
+			</div>
+			<div id="menu">
+				<ul>
+					<li class="current_page_item"><a href={% url 'homepage' %} accesskey="1" title="">Homepage</a></li>
+					<li><a href={% url 'markermap' %} accesskey="2" title="">Marker Map</a></li>
+					<li><a href={% url 'heatmap'%} accesskey="3" title="">Heat Map</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+

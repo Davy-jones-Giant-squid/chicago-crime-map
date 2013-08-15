@@ -1,13 +1,17 @@
-<!DOCTYPE html>
+{% include "header.html" %}
+{% block header%}
+{% endblock header %}
+
 <html>
   <head>
     <title>Maps Engine Layer</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+
     <style>
-      html, body, #map-canvas {
-        height: 600px;
-        width: 500px;
+      #map-canvas {
+        width: 538px;
+        height: 542px;
+        padding: 100px;
+        margin: 0 2em 2em 0;
       }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
@@ -76,12 +80,6 @@
   </head>
 
   <body>
-    <div id="panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
-    </div>
-    <div id="map-canvas"></div>
+    <div id="map-canvas" class='style'></div>
   </body>
 </html>
