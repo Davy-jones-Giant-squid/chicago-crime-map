@@ -28,7 +28,7 @@ p, ol, ul
 
 p
 {
-	line-height: 180%;
+	line-height: 100%;
 }
 
 strong
@@ -501,20 +501,34 @@ element.style {
 /*********************************************************************************/
 
 #map_canvas{      
-      width: 538px;
+      width: 600px;
       height: 542px;
       background-color: #CCC;
     }
 
     .style {
     height: 100%;
-    left: 23px;
+    float: left;
+    margin: 23px;
     overflow: hidden;
     position: relative;
-    top: 23px;
+    top: 20px;
     width: 91%;
     z-index: 0;
 }
+
+#checkbox{
+	float: right;
+	position: relative;
+	display: inline-block;
+	background-color: white;
+	top: 23px;
+	width: 500px;
+    height: 200px;
+    margin: 23px;
+    padding: 10px 10px 10px 10px;
+
+    }
 
 
 
