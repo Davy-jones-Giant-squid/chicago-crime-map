@@ -22,7 +22,9 @@ class Command(BaseCommand):
 	def handle(self, *args, **kwargs):
 		log.debug('Retrieving data from cityofchicago.org')
 
+		num_of_id = 0
 		for datum in data:
+			num_of_id += 1
 			non_unicode_keys = dict((str(k), v) for k, v in datum.iteritems())
 			if 'location' in non_unicode_keys:
 				location_non_unicode = dict((str(k), v) for k, v in non_unicode_keys['location'].iteritems())
@@ -64,3 +66,4 @@ class Command(BaseCommand):
 					crime_obj = Crime.objects.create(location=loc_obj, **attribute_dict)
 					crime_obj.save()
 
+		print num_of_id
