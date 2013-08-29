@@ -47,11 +47,20 @@
       
   }
 
+function toPascalCase(str) {
+    var arr = str.split(/\s|_/);
+    for(var i=0,l=arr.length; i<l; i++) {
+        arr[i] = arr[i].substr(0,1).toUpperCase() + 
+                 (arr[i].length > 1 ? arr[i].substr(1).toLowerCase() : "");
+    }
+    return arr.join(" ");
+}
 
   function createMarker(point, map, primary_type, description) {
+
     var content_window = '<div id="content">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">' + primary_type +'</h1>'+
+      '<h1 id="firstHeading" class="firstHeading">' + toPascalCase(primary_type.toLowerCase()) +'</h1>'+
       '<div id="bodyContent">'+
       '<p>'+ description.toLowerCase() + '</p>' +
       '</div>';
@@ -67,7 +76,7 @@
         };
         infowindow = new google.maps.InfoWindow({
             content: content_window,
-            maxWidth: 250,
+            maxWidth: 300,
         });
         infowindow.open(map, marker);
     });
@@ -94,7 +103,7 @@
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
-  
+
 
   </script>
 </head>
@@ -111,6 +120,7 @@
     <input type="checkbox" name="crime" value='ARSON'/> Arson
     <input type="checkbox" name="crime" value='ASSAULT'/> Assault
     <input type="checkbox" name="crime" value='HOMICIDE'/> Homicide</p>
+    <p><input type="checkbox" name="crime" value='CRIMINAL TRESPASS'/>Criminal Trespass</p>
     <br/>
     <p><input type="button" value="Submit" onclick="submitCrimes(check_crime.crime)" /></p>
     </form>
