@@ -9,28 +9,29 @@
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen">
 <link href="/static/fonts.css" rel="stylesheet" type="text/css" media="all" />
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/static/script.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
 </head>
 
 <body>
-<div id="header-wrapper">
-	<div id="header-wrapper2">
-		<div id="header" class="container">
-			<div id="logo">
-				<h1><a href="#" class="icon icon-group"><span>Chicago Crime Map</span></a></h1>
-				<p >Check what's happening in your neighborhood</p>
-			</div>
-			<div id="menu">
-				<ul>
-					<li class="current_page_item"><a href={% url 'homepage' %} accesskey="1" title="">Homepage</a></li>
-					<li><a href={% url 'markermap' %} accesskey="2" title="">Marker Map</a></li>
-					<li><a href={% url 'heatmap'%} accesskey="3" title="">Heat Map</a></li>
-
-				</ul>
-			</div>
-		</div>
-	</div>
+<div id='header-wrapper'>	
+	<header>
+		<h1>
+			<a title="Return to the Homepage" href='#'>Chicago Crime Maps</a>
+		</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Maps</a>
+					<ul>
+						<li><a href={% url 'markermap' %}>MarkerMap</a></li>
+						<li><a href={% url 'heatmap'%}>Heatmap</a></li>
+					</ul>
+				</li>
+				<li><a href="#">About</a></li>
+			</ul>
+		</nav>
+	</header>
 </div>
-
+</body>
+</html>

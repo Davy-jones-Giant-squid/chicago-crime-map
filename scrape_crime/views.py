@@ -30,7 +30,10 @@ def markermap(request):
 	objs = Crime.objects.exclude(location__latitude=None).values('location__latitude', 'location__longitude', 'primary_type', 'description') 
 	list_obj = [[i['location__latitude'], i['location__longitude'], str(i['primary_type']), str(i['description'])] for i in objs]
 	context = {'objects': simplejson.dumps(list_obj)}
+	obj_array = []
+
 	return render_to_response('markermap.html', context)
+
 
 
 
