@@ -44,9 +44,9 @@ function toPascalCase(str) {
 
   function createMarker(point, map, primary_type, description) {
 
-    var content_window = '<div id="content">'+
+    var content_window = '<div id="window-content">'+
       '</div>'+
-      '<h2 id="firstHeading" class="firstHeading">' + toPascalCase(primary_type.toLowerCase()) +'</h2>'+
+      '<h2 id="firstHeading">' + toPascalCase(primary_type.toLowerCase()) +'</h2>'+
       '<div id="bodyContent">'+
       '<p>'+ description.toLowerCase() + '</p>' +
       '</div>';
@@ -62,7 +62,7 @@ function toPascalCase(str) {
         };
         infowindow = new google.maps.InfoWindow({
             content: content_window,
-            maxWidth: 200,
+          
         });
         infowindow.open(map, marker);
     });
@@ -92,6 +92,8 @@ function toPascalCase(str) {
         var mapOptions = {
           zoom: 10,
           center: new google.maps.LatLng(41.87, -87.62),
+
+          disableDoubleClickZoom: true,
           mapTypeId: google.maps.MapTypeId.SATELLITE
         };
 

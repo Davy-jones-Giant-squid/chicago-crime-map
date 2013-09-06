@@ -1,192 +1,256 @@
-body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+body, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
     border: 0 none;
     margin: 0;
     outline: medium none;
     padding: 0;
 }
 
-
-
 body {
+	margin: 1% 1% 0 1%;
     background: none repeat scroll 0 0 #FFFFFF;
     color: #666666;
-    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,sans-serif;
-    font-size: 16px;
-    line-height: 26px;
+    line-height: 20px;
+	font-family: courier;
+	font-size: 18px;
 }
 
-h1{
-	font-family: Arial;
-    font-size: 46px;
+a{
+	text-decoration: none;
 }
 
-
-a {
-    color: #FFFFFF;
-    text-decoration: none;
+#window-content{
+	text-align: left;
+	width: 200px;
+	text-align: left;
 }
 
-
+#firstHeading{
+	font-family: tahoma;
+	margin: 0 auto;
+}
 /****************************************************/
 /*  Header                                          */
 /****************************************************/
 
-#header-wrapper {
-    background: url(images/header-chicago.png) repeat scroll 0 0 #A4B4CA;
-    min-width: 1000px;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height:350px;
-    z-index: 5;
+#header-wrapper{
+	width: 100%;
+	text-align: center;
+	height: 186px;
 }
 
-header {
-    height: 71px;
-    margin: 5px auto;
-    width: 100%;
-    background-color: rgba(100, 100, 100, 0.60);
-    position: relative;
-    top: 269px;
+header{
+	margin: 0 auto;
+	overflow: hidden;
+	height: 185px;
+	text-align: center;
+	width: 95%;
 }
 
-header h1 a {
-    display: block;
-    float: left;
-    height: 54px;
-    position: relative;
-    text-indent: 15px;
-    top: 24px;
-    width: 500px
+/* Logo */
+#logo-wrapper{
+	display: block;
+	width: 273px;
+	text-align: center;
+	margin-left: 20px;
+	position: absolute;
+
 }
 
-/****************************************************/
-/* Navigation bar: Home, Maps, About                */
-/****************************************************/
+img.medium{
+	width: 273px;
+	height: 100px;
+	margin: 0px auto;
+}
 
+#logo-image{
+	margin: 0px auto;
+	border: 5px black solid;
+	border-left: 0px;
+	border-right: 0px;
 
-nav{
+}
+
+#title-wrapper{
+	width: 273px;
+	height:	70px;
+	padding: 0px 0px 0px 0px;
+	text-align: center;
+	top: 0px;
+}
+
+header div div p{
+	font-family: courier;
+}
+p.big-title{
+	font-size: 64px;
+	font-style: bold;
+	padding-bottom: 2px;
+	
+}
+
+p.lower-title{
+	padding-top: 4px;
+	font-size: 44px
+}
+header a p{
+	font-size: 40px;
+	padding: 100px auto;
+	margin: 10px auto;
 	position: relative;
-	float: right;
-	right: 20px;
+	color: black;
+	line-height: 20px;
 }
 
-nav ul {
-    border-radius: 10px 10px 10px 10px;
-    display: inline-table;
-    list-style: none outside none;
-    padding: 0 20px;
+/* Navigation bar */
+
+#menu{
+	height: 174px;
+	background: transparent;
+	border: 5px solid black;
+	border-left: 0px;
+	border-right: 0px;
+	margin: 0 auto;
+	padding: 0;	
+	list-style: none;
+	position: absolute;
+	text-align: center;
+	z-index: 1;
+	width: 100%;
+
+}
+
+nav {
+	text-align: center;
+	height: 185px;
+	width: 71.5%;
+	margin-left: 293px;
+    margin-right: 20px;
     position: relative;
 }
+
 nav ul:after {
-    clear: both;
-    content: "";
-    display: block;
+	content: '';
+	display: block;
+	clear: both;
 }
 
-nav ul ul{
-	display:none;
+.menu-item{
+	display: inline-block;
+	padding: 77px 38px;
 }
 
-nav ul li:hover> ul{
-	display:block;
+.menu-item-title{
+
+	padding: 0px 63px;
+	color: black;
+
 }
 
-nav ul li {
-	float: left;
+nav ul li a:hover{
+	display: block;
+}
+
+nav ul li:hover > ul{
+	display: block;
 }
 
 nav ul li:hover {
-	 background: -moz-linear-gradient(center top , #7A848F 0%, #BBBBBB 35%) repeat scroll 0 0 transparent;
+	background:none repeat scroll 0 0 #a4d8f4;	
 }
 
-nav ul li:hover a {
-	color: #FFFFFF;
-}
 	
 nav ul li a {
 	display: block; 
-	padding: 25px 40px;
-	color: #fff; 
+	padding: 14.5px 40px;
+	color: black; 
 	text-decoration: none;
 }
 
-nav ul ul {
-	background: none repeat scroll 0 0 #5F6975; 
-	border-radius: 0px; 
+.dropdown-menu {
+	background: none repeat scroll 0 0 #5F6975;  
 	padding: 0;
-	position: absolute; 
-	top: 100%;
+	margin-top: 82px;
+	position: fixed; 
+	z-index: 2;
 }
 
-nav ul ul li {
-	border-top: 1px solid #FFFFFF;
-	float: none;
+.dropdown-menu{
+	display: none;
+}
+
+.dropdown-menu-item {
+	float: right;
 	position: relative;
+	margin: 4px;
+	list-style: none
 }
 
-nav ul ul li a {
-	padding: 15px 40px;
-	color: #FFFFFF;
+.dropdown-menu-item a {
+	padding: 15px 59px;
+	color: black;
 }
 
 nav ul ul li a:hover {
-	background:none repeat scroll 0 0 #BBBBBB;
+	background:none repeat scroll 0 0 #a4d8f4;
 }
+
+
 
 /*********************************************************************************/
 /* Content                                                                       */
 /*********************************************************************************/
 
 #content-wrapper {
-    background: none repeat scroll 0 0 grey;
-    position: relative;
-    top: 340px;
+    position: static;
     height: 100%;
+    width: 100%;
+    border: 0 5px 0 5px solid black;
+	text-align: center;
+
 
 
 }
 #content {
-    margin: 0 auto;
     background-color: white;
-    width: 1100px;
+    width: 95%;
     position: relative;
-    height: 100%;
     overflow: hidden;
+    height: 100%;
+    margin: 0 auto;
+
 
 }
-
-
-
 
 /*********************************************************************************/
 /* Map Canvas                                                                   */
 /*********************************************************************************/
 
 #map_canvas, #map-canvas{      
-      width: 600px;
+      width: 97%;
       height: 542px;
       background-color: #CCCCCC;
-
+      margin: 15px auto;
     }
 
     .style {
-    height: 100%;
+    height: 80%;
     margin: 10px;
     overflow: hidden;
-    top: 12px;
+    border: 5px solid black;
 }
 
 #checkbox{
 	position: absolute;
 	background-color: white;
-	top: 11px;
-	left: 700px;
+	top: 49px;
+	left: 718px;
 	width: 30%;
     height: 200px;
     margin: 10px auto;
     padding: 18px 0 18px 18px;
     z-index: 1;
+    border-radius: 23px 0 0 23px;
+    font-size: 15px;
 
     }
 
@@ -194,47 +258,3 @@ nav ul ul li a:hover {
 /* Buttons design                                                                */
 /*********************************************************************************/
 
-.btn {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
-	background-color:#ededed;
-	-webkit-border-top-left-radius:10px;
-	-moz-border-radius-topleft:10px;
-	border-top-left-radius:10px;
-	-webkit-border-top-right-radius:10px;
-	-moz-border-radius-topright:10px;
-	border-top-right-radius:10px;
-	-webkit-border-bottom-right-radius:10px;
-	-moz-border-radius-bottomright:10px;
-	border-bottom-right-radius:10px;
-	-webkit-border-bottom-left-radius:10px;
-	-moz-border-radius-bottomleft:10px;
-	border-bottom-left-radius:10px;
-	text-indent:-2px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	color:#777777;
-	font-family:arial;
-	font-size:20px;
-	font-weight:bold;
-	font-style:normal;
-	height:48px;
-	line-height:48px;
-	width:100px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #ffffff;
-}
-.btn:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
-	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
-	background-color:#dfdfdf;
-}.btn:active {
-	position:relative;
-	top:1px;
-}

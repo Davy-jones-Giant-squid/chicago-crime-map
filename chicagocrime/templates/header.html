@@ -16,21 +16,28 @@
 <body>
 <div id='header-wrapper'>	
 	<header>
-		<h1>
-			<a title="Return to the Homepage" href='#'>Chicago Crime Maps</a>
-		</h1>
-		<nav>
-			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Maps</a>
-					<ul>
-						<li><a href={% url 'markermap' %}>MarkerMap</a></li>
-						<li><a href={% url 'heatmap'%}>Heatmap</a></li>
-					</ul>
-				</li>
-				<li><a href="#">About</a></li>
-			</ul>
-		</nav>
+		<div id="logo-wrapper">
+		<a title="Return to the Homepage" href={% url 'homepage'%}>
+		<img src='/static/images/header-chicago.png' class='medium' id='logo-image'>
+		<div id="title-wrapper">
+			<p class="big-title">CHICAGO</p>
+			<p class="lower-title">CRIME MAPS</p>
+		</div>
+		</a>
+	</div>
+
+	<nav>
+		<ul id="menu">
+			<li class="menu-item"><a class="menu-item-title" href={% url 'homepage'%}>Home</a></li>
+			<li class="menu-item"><a class="menu-item-title" href="#">Maps</a>
+				<ul class= "dropdown-menu">
+					<li class="dropdown-menu-item"><a href={% url 'markermap' %}>MarkerMap</a></li>
+					<li class="dropdown-menu-item"><a href={% url 'heatmap' %}>Heatmap</a></li>
+				</ul>
+			</li>
+			<li class="menu-item"><a class="menu-item-title" href="#">About</a></li>
+		</ul>
+	</nav>
 	</header>
 </div>
 </body>
