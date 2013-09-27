@@ -4,7 +4,7 @@ from scrape_crime.models import Neighborhood, Coordinates
 
 from xml.dom import minidom
 
-xmldoc = minidom.parse("scrape_crime/management/commands/Kmlcommunityareas.kml.kml")
+xmldoc = minidom.parse("scrape_crime/management/commands/Kmlcommunityareas.kml")
 document = xmldoc.getElementsByTagName("Document")[0]
 placemarks = document.getElementsByTagName("Placemark")
 community_area = {
