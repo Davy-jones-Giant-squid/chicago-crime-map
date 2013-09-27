@@ -10,8 +10,10 @@
   <title>Info windows</title>
   <script>
   var js_objects = {{objects|safe}};
+  var neighborhood_obj = {{neighborhood|safe}}  
   var marker, point;
   var infowindow;
+  var neighborhoodNames = Object.keys(neighborhood_obj);
   google.maps.event.addDomListener(window, 'load', initialize);
 
   </script>
@@ -20,25 +22,16 @@
   <div id="content-wrapper">
     <div id="content">
       <section id="map_canvas" class='style'></section> 
-      <section id="checkbox" >
-        <form name = "check_crime">
-        <p>Select by category of crimes:  </p>
-        <br/>
-        <p><input type="checkbox" name="crime" value='THEFT'/> Theft</p>
-        <input type="checkbox" name="crime" value='CRIMINAL DAMAGE'/> Criminal Damage
-        <input type="checkbox" name="crime" value='BATTERY'/> Battery</p>
-        <p><input type="checkbox" name="crime" value='BURGLARY' /> Burglary
-        <input type="checkbox" name="crime" value='ARSON'/> Arson
-        <input type="checkbox" name="crime" value='ASSAULT'/> Assault
-        <input type="checkbox" name="crime" value='HOMICIDE'/> Homicide</p>
-        <p><input type="checkbox" name="crime" value='CRIMINAL TRESPASS'/>Criminal Trespass</p>
-        <br/>
-        <p><input class='btn' type="button" value="Submit" onclick="submitCrimes(check_crime.crime)" /></p>
-        </form>
-      </section>
+      <div class="search-bar">
+      <form id="searchbox" action="">
+        
+        <p class="select-search"> Select a neighborhood: </p>
+        <input id="search" type="text" class="noEnterSubmit" placeholder="Type here" >
+        <input id="submit" type="button" value="search">
+      
+      </form>
+      </div>
     </div>
   </div>
-  
-
 </body>
 </html>

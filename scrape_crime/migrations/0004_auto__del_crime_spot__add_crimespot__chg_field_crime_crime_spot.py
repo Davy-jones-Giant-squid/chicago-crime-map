@@ -8,54 +8,40 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Crime'
-        db.create_table(u'scrape_crime_crime', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('case_number', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-            ('description', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-            ('domestic', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('date', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-            ('arrest', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('district', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-            ('crime_spot', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['scrape_crime.Crime_spot'], null=True, blank=True)),
-            ('primary_type', self.gf('django.db.models.fields.CharField')(max_length=255, blank='')),
-            ('beat', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-            ('ward', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-            ('iucr', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-            ('updated_on', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
-            ('fbi_code', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
-        ))
-        db.send_create_signal(u'scrape_crime', ['Crime'])
+        # Deleting model 'Crime_spot'
+        db.delete_table(u'scrape_crime_crime_spot')
 
-        # Adding model 'Crime_spot'
-        db.create_table(u'scrape_crime_crime_spot', (
+        # Adding model 'CrimeSpot'
+        db.create_table(u'scrape_crime_crimespot', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('coordinates', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['scrape_crime.Coordinates'], null=True, blank=True)),
             ('community_area', self.gf('django.db.models.fields.IntegerField')(default=False)),
             ('community_area_name', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
             ('block', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
         ))
-        db.send_create_signal(u'scrape_crime', ['Crime_spot'])
+        db.send_create_signal(u'scrape_crime', ['CrimeSpot'])
 
-        # Adding model 'Coordinates'
-        db.create_table(u'scrape_crime_coordinates', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('latitude', self.gf('django.db.models.fields.FloatField')(null=True, blank=True)),
-            ('longitude', self.gf('django.db.models.fields.FloatField')(null=True, blank=True)),
-        ))
-        db.send_create_signal(u'scrape_crime', ['Coordinates'])
 
+        # Changing field 'Crime.crime_spot'
+        db.alter_column(u'scrape_crime_crime', 'crime_spot_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['scrape_crime.CrimeSpot'], null=True))
 
     def backwards(self, orm):
-        # Deleting model 'Crime'
-        db.delete_table(u'scrape_crime_crime')
+        # Adding model 'Crime_spot'
+        db.create_table(u'scrape_crime_crime_spot', (
+            ('coordinates', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['scrape_crime.Coordinates'], null=True, blank=True)),
+            ('community_area_name', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
+            ('community_area', self.gf('django.db.models.fields.IntegerField')(default=False)),
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('block', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank='')),
+        ))
+        db.send_create_signal(u'scrape_crime', ['Crime_spot'])
 
-        # Deleting model 'Crime_spot'
-        db.delete_table(u'scrape_crime_crime_spot')
+        # Deleting model 'CrimeSpot'
+        db.delete_table(u'scrape_crime_crimespot')
 
-        # Deleting model 'Coordinates'
-        db.delete_table(u'scrape_crime_coordinates')
 
+        # Changing field 'Crime.crime_spot'
+        db.alter_column(u'scrape_crime_crime', 'crime_spot_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['scrape_crime.Crime_spot'], null=True))
 
     models = {
         u'scrape_crime.coordinates': {
@@ -69,7 +55,7 @@ class Migration(SchemaMigration):
             'arrest': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'beat': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"}),
             'case_number': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"}),
-            'crime_spot': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['scrape_crime.Crime_spot']", 'null': 'True', 'blank': 'True'}),
+            'crime_spot': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['scrape_crime.CrimeSpot']", 'null': 'True', 'blank': 'True'}),
             'date': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"}),
             'description': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"}),
             'district': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"}),
@@ -81,8 +67,8 @@ class Migration(SchemaMigration):
             'updated_on': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"}),
             'ward': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"})
         },
-        u'scrape_crime.crime_spot': {
-            'Meta': {'object_name': 'Crime_spot'},
+        u'scrape_crime.crimespot': {
+            'Meta': {'object_name': 'CrimeSpot'},
             'block': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"}),
             'community_area': ('django.db.models.fields.IntegerField', [], {'default': 'False'}),
             'community_area_name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': "''"}),

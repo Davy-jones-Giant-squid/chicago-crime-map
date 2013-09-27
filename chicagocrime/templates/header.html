@@ -9,6 +9,9 @@
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/static/style.css" media="screen">
 <link href="/static/fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript" src="/static/script.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
 </head>
@@ -26,6 +29,7 @@
 		</a>
 	</div>
 
+	<div id="navbar">
 	<nav>
 		<ul id="menu">
 			<li class="menu-item"><a class="menu-item-title" href={% url 'homepage'%}>Home</a></li>
@@ -38,6 +42,7 @@
 			<li class="menu-item"><a class="menu-item-title" href="#">About</a></li>
 		</ul>
 	</nav>
+	</div>
 	</header>
 </div>
 </body>

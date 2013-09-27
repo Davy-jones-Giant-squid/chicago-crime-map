@@ -4,20 +4,21 @@ from django.db import models
 
 class Crime(models.Model):
 	
-	case_number = models.CharField(max_length=255,null=True, blank='')
+	case_number = models.CharField(max_length=255,null=True, blank='', unique=True)
 	description = models.CharField(max_length=255,null=True, blank='')
 	domestic = models.BooleanField(default=False)
 	date = models.CharField(max_length=255,null=True, blank='')
 	arrest = models.BooleanField(default=False)
 	district = models.CharField(max_length=255,null=True, blank='')
-	location = models.ForeignKey('Location', null=True, blank=True)
-	location_description = models.CharField(max_length=255,null=True, blank='')
+	neighborhood = models.ForeignKey('Neighborhood', null=True, blank=True)
 	primary_type = models.CharField(max_length=255, blank='')
 	beat = models.CharField(max_length=255,null=True, blank='')
 	ward = models.CharField(max_length=255,null=True, blank='')
 	iucr = models.CharField(max_length=255,null=True, blank='')	
 	updated_on = models.CharField(max_length=255,null=True, blank='')
 	fbi_code = models.CharField(max_length=255,null=True, blank=True)
+	crime_coordinates = models.ForeignKey('Coordinates', null=True, blank=True)
+	block = models.CharField(max_length=255, null=True, blank='')
 
 
 	def __unicode__(self):
@@ -26,10 +27,11 @@ class Crime(models.Model):
 	class Meta:
 		ordering = ['description']
 
+
 	def in_range(self, latitude, longitude, distance):
 		"""
 		Given latitude and longitude numbers, as well as a distance,
-		return True, if the latitude and longitude are within 'distance'
+		return True, if the latitude and longitude are within `distance`
 		units of latitude and longitude of the point given.  Otherwise, 
 		return False
 		"""
@@ -42,13 +44,19 @@ class Crime(models.Model):
 		else:
 			return False
 
-	
-class Location(models.Model):
+
+class Coordinates(models.Model):
 	latitude = models.FloatField(null=True, blank=True)
 	longitude = models.FloatField(null=True, blank=True)
-	needs_recoding = models.BooleanField(default=False)
-	community_area = models.IntegerField(default=False)
-	block = models.CharField(max_length=255, null=True, blank='')
 
 	def __unicode__(self):
-		return u'Location: %s, %s' % (self.latitude, self.longitude)
+		return u'%s, %s' % (self.latitude, self.longitude)
+
+
+class Neighborhood(models.Model):
+	coordinates = models.ManyToManyField(Coordinates)
+	name = models.CharField(max_length=255, default=False, unique=True)
+	area_number = models.IntegerField(default=False)
+
+	def __unicode__(self):
+		return u'Neighborhood: %s' % (self.name)

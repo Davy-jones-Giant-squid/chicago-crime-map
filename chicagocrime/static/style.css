@@ -49,10 +49,10 @@ header{
 /* Logo */
 #logo-wrapper{
 	display: block;
-	width: 273px;
+	width: 26%;
 	text-align: center;
 	margin-left: 20px;
-	position: absolute;
+	float: left;
 
 }
 
@@ -104,7 +104,7 @@ header a p{
 /* Navigation bar */
 
 #menu{
-	height: 174px;
+	height: 100px;
 	background: transparent;
 	border: 5px solid black;
 	border-left: 0px;
@@ -119,12 +119,15 @@ header a p{
 
 }
 
+#navbar{
+	float: left;
+	width: 72%;
+}
+
 nav {
 	text-align: center;
-	height: 185px;
-	width: 71.5%;
-	margin-left: 293px;
-    margin-right: 20px;
+	width: 100%;
+	height: 111px;
     position: relative;
 }
 
@@ -136,7 +139,7 @@ nav ul:after {
 
 .menu-item{
 	display: inline-block;
-	padding: 77px 38px;
+	padding: 40px 32px;
 }
 
 .menu-item-title{
@@ -169,7 +172,7 @@ nav ul li a {
 .dropdown-menu {
 	background: none repeat scroll 0 0 #5F6975;  
 	padding: 0;
-	margin-top: 82px;
+	margin-top: 44px;
 	position: fixed; 
 	z-index: 2;
 }
@@ -226,10 +229,11 @@ nav ul ul li a:hover {
 /*********************************************************************************/
 
 #map_canvas, #map-canvas{      
-      width: 97%;
-      height: 542px;
+      width: 65%;
+      height: 400px;
       background-color: #CCCCCC;
-      margin: 15px auto;
+      margin: 15px 0 0 15px;
+      float: left;
     }
 
     .style {
@@ -255,6 +259,107 @@ nav ul ul li a:hover {
     }
 
 /*********************************************************************************/
-/* Buttons design                                                                */
+/* Search box design                                                                */
 /*********************************************************************************/
 
+#search, #submit
+{
+	float: left;
+}
+
+#search
+{
+	padding: 5px 9px;
+	height: 23px;
+	width: 210px;
+	border: 1px solid #a4c3ca;
+	font: normal 13px 'trebuchet MS', arial, helvetica;
+	background: #f1f1f1;
+	
+	-moz-border-radius: 3px 3px 3px 3px;
+	 border-radius: 3px 3px 3px 3px;
+	 -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	 -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);            
+}
+
+/* ----------------------- */
+
+#submit
+{		
+	background: #6cbb6b;
+	background-image: -moz-linear-gradient(#95d788, #6cbb6b);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #6cbb6b),color-stop(1, #95d788));
+	
+	-moz-border-radius: 3px 50px 50px 3px;
+	border-radius: 3px 3px 3px 3px;
+	
+	border-width: 1px;
+	border-style: solid;
+	border-color: #7eba7c #578e57 #447d43;
+	
+	 -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	 -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	 box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;   		
+
+	height: 35px;
+	margin: 0 0 0 4px;
+        padding: 0;
+	width: 80px;
+	cursor: pointer;
+	font: bold 14px Arial, Helvetica;
+	color: #23441e;
+	
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+#submit:hover
+{		
+	background: #95d788;
+	background-image: -moz-linear-gradient(#6cbb6b, #95d788);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #95d788),color-stop(1, #6cbb6b));
+}	
+
+#submit:active
+{		
+	background: #95d788;
+	outline: none;
+   
+	 -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	 -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
+}
+
+#submit::-moz-focus-inner
+{
+       border: 0;  /* Small centering fix for Firefox */
+}		
+
+#search::-webkit-input-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}
+
+#search:-moz-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}  
+
+#search:-ms-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+} 
+
+.search-bar{
+	background-color: white;
+	float: left;
+	margin: 16px 0 0 10px;
+}
+
+.select-search{
+	text-align: left;
+	font-family: Arial;
+	font-size: 15px;
+	margin: 3px;
+	text-align: left;
+}
