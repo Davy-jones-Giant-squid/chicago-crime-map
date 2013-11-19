@@ -138,7 +138,6 @@ function createMarker(point, map, primary_type, description) {
       });
       infowindow.open(map, marker);
   });
-  //marker.setMap(map);
 }
 
 
